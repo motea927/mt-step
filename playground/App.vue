@@ -2,11 +2,14 @@
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 import PluginApp from '../src/MtStep.vue'
+
+const steps = [[{ selector: '#logo' }]]
 </script>
 
 <template>
   <header>
     <img
+      id="logo"
       alt="Vue logo"
       class="logo"
       src="./assets/logo.svg"
@@ -21,7 +24,8 @@ import PluginApp from '../src/MtStep.vue'
 
   <main>
     <TheWelcome />
-    <PluginApp />
+    <button>show</button>
+    <PluginApp :steps="steps" />
   </main>
 </template>
 
