@@ -1,13 +1,19 @@
 <template>
-  <div class="mt-step-highlight" :style="positionStyle"></div>
+  <div
+    :class="['mt-step-item-highlight', `mt-step-item-highlight--${index}`]"
+    :style="positionStyle"
+  ></div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 
 const props = defineProps<{
+  index: number
   selector: string
-  hintText?: string
+  hint?: {
+    text: string
+  }
 }>()
 
 const element = ref<HTMLElement | null>(null)
@@ -62,7 +68,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss">
-.mt-step-highlight {
+.mt-step-item-highlight {
   display: block;
   position: absolute;
   background-color: rgb(255, 255, 255);

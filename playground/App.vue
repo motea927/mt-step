@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
-import PluginApp from '../src/MtStep.vue'
-
-const steps = [[{ selector: '#logo' }]]
+import MtStep from '../src/MtStep'
+import MtStepItem from '../src/MtStepItem.vue'
 </script>
 
 <template>
@@ -18,14 +17,19 @@ const steps = [[{ selector: '#logo' }]]
     />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <HelloWorld id="hello-world" msg="You did it!" />
     </div>
   </header>
 
   <main>
     <TheWelcome />
-    <button>show</button>
-    <PluginApp :steps="steps" />
+    <button id="show">show</button>
+    <MtStep>
+      <MtStepItem
+        :step-item="[{ selector: '#logo' }, { selector: '#hello-world' }]"
+      />
+      <MtStepItem :step-item="[{ selector: '#show' }]" />
+    </MtStep>
   </main>
 </template>
 
