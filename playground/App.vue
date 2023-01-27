@@ -24,16 +24,30 @@ import MtStepItem from '../src/MtStepItem.vue'
   <main>
     <TheWelcome />
     <button id="show">show</button>
-    <MtStep>
+    <MtStep class="playground-mt-step">
       <MtStepItem
-        :step-item="[{ selector: '#logo' }, { selector: '#hello-world' }]"
+        :step-item="[
+          {
+            selector: '#logo',
+            hint: {
+              text: '這是LOGO',
+            },
+          },
+          {
+            selector: '#hello-world',
+            hint: {
+              text: '這是哈囉',
+              position: 'bottom',
+            },
+          },
+        ]"
       />
       <MtStepItem :step-item="[{ selector: '#show' }]" />
     </MtStep>
   </main>
 </template>
 
-<style scoped>
+<style lang="scss">
 header {
   line-height: 1.5;
 }
@@ -41,6 +55,10 @@ header {
 .logo {
   display: block;
   margin: 0 auto 2rem;
+}
+
+.playground-mt-step .mt-step-item-highlight {
+  background-color: #444;
 }
 
 @media (min-width: 1024px) {
