@@ -33,13 +33,17 @@ onMounted(() => {
   if (!element.value) return
 
   const { position, zIndex } = window.getComputedStyle(element.value)
+  const newZIndex = window
+    .getComputedStyle(document.querySelector('.mt-step') as Element)
+    .getPropertyValue('--z-index-highlight')
+
   originalPosition.value = position
   originalZIndex.value = zIndex
 
   if (originalPosition.value === 'static') {
     element.value.style.position = 'relative'
   }
-  element.value.style.zIndex = '100004'
+  element.value.style.zIndex = newZIndex
 })
 
 onBeforeUnmount(() => {
@@ -54,7 +58,7 @@ onBeforeUnmount(() => {
   display: block;
   position: absolute;
   background-color: rgb(255, 255, 255);
-  z-index: 100003 !important;
+  z-index: var(--z-index-highlight);
   scale: 1.06;
   border-radius: 8px;
 }

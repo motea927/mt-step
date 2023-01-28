@@ -1,5 +1,6 @@
 import MtStep from '@/MtStep'
 import MtStepItem from '@/MtStepItem.vue'
+import './variable.css'
 
 const isDev = import.meta.env.MODE === 'development'
 if (isDev) {

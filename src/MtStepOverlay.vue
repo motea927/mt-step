@@ -13,6 +13,6 @@
   width: 100%;
   height: 100%;
   opacity: 0.75;
-  z-index: 998;
+  z-index: var(--z-index-overlay);
 }
 </style>

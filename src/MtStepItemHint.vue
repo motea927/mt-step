@@ -56,7 +56,7 @@ const positionStyle = computed(() => {
   background-color: #fff;
   padding: 8px;
   border-radius: 4px;
-  z-index: 100004 !important;
+  z-index: var(--z-index-hint);
   color: #666;
 
   &::after {
