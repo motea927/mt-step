@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 import MtStep from '../src/MtStep'
 import MtStepItem from '../src/MtStepItem.vue'
+
+const showStep = ref(false)
 </script>
 
 <template>
@@ -23,8 +27,12 @@ import MtStepItem from '../src/MtStepItem.vue'
 
   <main>
     <TheWelcome />
-    <button id="show">show</button>
-    <MtStep class="playground-mt-step">
+    <button id="show" @click="showStep = true">show</button>
+    <MtStep
+      v-if="showStep"
+      class="playground-mt-step"
+      @close="showStep = false"
+    >
       <MtStepItem
         :step-item="[
           {

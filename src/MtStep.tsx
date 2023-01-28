@@ -1,13 +1,17 @@
-import { defineComponent, useSlots, ref } from 'vue'
+import { defineComponent, useSlots, ref, defineEmits } from 'vue'
 import MtStepOverlay from './MtStepOverlay.vue'
 import './MtStep.scss'
 
 const MtStep = defineComponent({
-  setup() {
+  setup(_props, { emit }) {
     const currentStepIndex = ref(0)
     const slots = useSlots()
+
     const handleClick = () => {
       currentStepIndex.value += 1
+      if (currentStepIndex.value >= slots.default!().length) {
+        emit('close')
+      }
     }
 
     return () =>
