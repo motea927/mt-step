@@ -38,12 +38,7 @@ const handleClose = () => {
   <main>
     <TheWelcome />
     <button id="show" @click="clickShow">show</button>
-    <MtStep
-      v-if="showStep"
-      v-model="index"
-      class="playground-mt-step"
-      @close="handleClose"
-    >
+    <MtStep v-if="showStep" class="playground-mt-step" @close="handleClose">
       <MtStepItem
         :step-item="[
           {

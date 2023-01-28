@@ -1,4 +1,4 @@
-import { defineComponent, useSlots, ref, computed } from 'vue'
+import { defineComponent, useSlots, ref, computed, nextTick } from 'vue'
 import type { VNode } from 'vue'
 
 import MtStepOverlay from './MtStepOverlay.vue'
@@ -24,7 +24,7 @@ const MtStep = defineComponent({
 
     const isClosed = () => {
       const slot = (slots.default!()[0].children ?? slots.default!()) as VNode[]
-      return currentStepIndex.value >= slot.length - 1
+      return currentStepIndex.value >= slot.length
     }
 
     const emitClose = () => {
@@ -38,19 +38,19 @@ const MtStep = defineComponent({
             get() {
               return props.modelValue ?? 0
             },
-            set(value: number) {
+            async set(value: number) {
+              emit('update:modelValue', value)
+              await nextTick()
               if (isClosed()) {
                 emitClose()
-                return
               }
-              emit('update:modelValue', value)
             },
           })
 
     const handleClick = () => {
       if (!props.isEnabledAutoPlay) return
-      if (props.modelValue === undefined && isClosed()) emitClose()
       currentStepIndex.value += 1
+      if (props.modelValue === undefined && isClosed()) emitClose()
     }
 
     const renderResult = computed(() => {
