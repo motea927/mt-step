@@ -9,10 +9,13 @@ import MtStepItem from '../src/MtStepItem.vue'
 const showStep = ref(false)
 const index = ref(0)
 
-const clickShow = async () => {
+const clickShow = () => {
   showStep.value = true
-  await new Promise((resolve) => setTimeout(resolve, 2000))
-  index.value += 1
+}
+
+const handleClose = () => {
+  showStep.value = false
+  index.value = 0
 }
 </script>
 
@@ -39,14 +42,14 @@ const clickShow = async () => {
       v-if="showStep"
       v-model="index"
       class="playground-mt-step"
-      @close="showStep = false"
+      @close="handleClose"
     >
       <MtStepItem
         :step-item="[
           {
             selector: '#logo',
             hint: {
-              text: '這是LOGO',
+              text: `這是LOGO`,
             },
           },
           {

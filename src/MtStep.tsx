@@ -1,4 +1,6 @@
 import { defineComponent, useSlots, ref, computed } from 'vue'
+import type { VNode } from 'vue'
+
 import MtStepOverlay from './MtStepOverlay.vue'
 import './MtStep.scss'
 
@@ -13,10 +15,18 @@ const MtStep = defineComponent({
       required: false,
     },
   },
+  emits: {
+    close: null,
+    'update:modelValue': null,
+  },
   setup(props, { emit }) {
     const slots = useSlots()
 
-    const isClosed = () => currentStepIndex.value >= slots.default!().length
+    const isClosed = () => {
+      const slot = (slots.default!()[0].children ?? slots.default!()) as VNode[]
+      return currentStepIndex.value >= slot.length - 1
+    }
+
     const emitClose = () => {
       emit('close')
     }
@@ -29,26 +39,35 @@ const MtStep = defineComponent({
               return props.modelValue ?? 0
             },
             set(value: number) {
-              if (isClosed()) emitClose()
+              if (isClosed()) {
+                emitClose()
+                return
+              }
               emit('update:modelValue', value)
             },
           })
 
     const handleClick = () => {
       if (!props.isEnabledAutoPlay) return
+      if (props.modelValue === undefined && isClosed()) emitClose()
       currentStepIndex.value += 1
-      if (isClosed()) emitClose()
     }
 
-    return () =>
-      slots.default && currentStepIndex.value < slots.default().length ? (
+    const renderResult = computed(() => {
+      if (!slots.default) return ''
+      if (!slots.default()[0]) return ''
+      const slot = (slots.default()[0].children ?? slots.default()) as VNode[]
+      if (currentStepIndex.value >= slot.length) return ''
+
+      return (
         <div class="mt-step" onClick={handleClick}>
           <MtStepOverlay />
-          {slots.default ? slots.default()[currentStepIndex.value] : ''}
+          {slot[currentStepIndex.value]}
         </div>
-      ) : (
-        ''
       )
+    })
+
+    return () => renderResult.value
   },
 })
 
