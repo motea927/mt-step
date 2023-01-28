@@ -1,7 +1,17 @@
 {
-  "name": "mt-template-vue-lib",
-  "version": "0.0.0",
-  "private": true,
+  "name": "mt-step",
+  "description": "A lightweight, highly customizable's Vue component to help user step by step focus on the page.",
+  "version": "0.0.1",
+  "private": false,
+  "author": {
+    "name": "motea927",
+    "email": "motea927@yahoo.com.tw"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/motea927/mt-step"
+  },
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
@@ -17,12 +27,12 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/my-lib.umd.cjs",
-  "module": "./dist/my-lib.js",
+  "main": "./dist/mt-step.umd.cjs",
+  "module": "./dist/mt-step.js",
   "exports": {
     ".": {
-      "import": "./dist/my-lib.js",
-      "require": "./dist/my-lib.umd.cjs"
+      "import": "./dist/mt-step.js",
+      "require": "./dist/mt-step.umd.cjs"
     }
   },
   "dependencies": {

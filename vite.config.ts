@@ -17,9 +17,9 @@ export default defineConfig({
     lib: {
       // Could also be a dictionary or array of multiple entry points
       entry: resolve(__dirname, 'src/main.ts'),
-      name: 'MyLib',
+      name: 'MtStep',
       // the proper extensions will be added
-      fileName: 'my-lib',
+      fileName: 'mt-step',
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
@@ -31,6 +31,7 @@ export default defineConfig({
         globals: {
           vue: 'Vue',
         },
+        assetFileNames: 'mt-step.[ext]',
       },
     },
   },
