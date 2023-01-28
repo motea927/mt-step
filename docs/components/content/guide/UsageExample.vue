@@ -4,7 +4,7 @@
       show demo
     </button>
 
-    <MtStep v-if="showStep">
+    <MtStep v-if="showStep" @close="showStep = false">
       <MtStepItem
         :stepItem="[
           {

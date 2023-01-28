@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@nuxt-themes/docus": "^1.6.0",
-    "mt-step": "0.0.4",
+    "mt-step": "0.0.5",
     "nuxt": "^3.1.0"
   }
 }
