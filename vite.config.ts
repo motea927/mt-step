@@ -12,7 +12,9 @@ export default defineConfig({
     vue(),
     vueJsx(),
     dts({
-      include: ['src/**'],
+      include: ['src/**.ts', 'src/**.tsx', 'src/**.vue', 'src/**.js'],
+      insertTypesEntry: true,
+      copyDtsFiles: false,
     }),
   ],
   resolve: {
