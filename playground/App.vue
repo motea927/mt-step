@@ -7,6 +7,13 @@ import MtStep from '../src/MtStep'
 import MtStepItem from '../src/MtStepItem.vue'
 
 const showStep = ref(false)
+const index = ref(0)
+
+const clickShow = async () => {
+  showStep.value = true
+  await new Promise((resolve) => setTimeout(resolve, 2000))
+  index.value += 1
+}
 </script>
 
 <template>
@@ -27,9 +34,10 @@ const showStep = ref(false)
 
   <main>
     <TheWelcome />
-    <button id="show" @click="showStep = true">show</button>
+    <button id="show" @click="clickShow">show</button>
     <MtStep
       v-if="showStep"
+      v-model="index"
       class="playground-mt-step"
       @close="showStep = false"
     >

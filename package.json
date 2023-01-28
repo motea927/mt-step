@@ -1,7 +1,7 @@
 {
   "name": "mt-step",
   "description": "A lightweight, highly customizable's Vue component to help user step by step focus on the page.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": false,
   "author": {
     "name": "motea927",
