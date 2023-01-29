@@ -1,5 +1,6 @@
 import { defineComponent, useSlots, ref, computed, nextTick } from 'vue'
 import type { VNode } from 'vue'
+import { ShapeFlags } from './types'
 
 import MtStepOverlay from './MtStepOverlay.vue'
 import './MtStep.scss'
@@ -23,8 +24,7 @@ const MtStep = defineComponent({
     const slots = useSlots()
 
     const isClosed = () => {
-      const slot = (slots.default!()[0].children ?? slots.default!()) as VNode[]
-      return currentStepIndex.value >= slot.length
+      return currentStepIndex.value >= calculateSlots.value.length
     }
 
     const emitClose = () => {
@@ -53,16 +53,38 @@ const MtStep = defineComponent({
       if (props.modelValue === undefined && isClosed()) emitClose()
     }
 
+    // when use v-for, flag is ARRAY_CHILDREN, slots will be children
+    const calculateSlots = computed(() => {
+      if (!slots.default) return []
+      if (!slots.default()[0]) return []
+
+      const renderSlots: VNode[] = []
+      const slot = slots
+        .default()
+        .filter(
+          (slot) =>
+            slot.shapeFlag === ShapeFlags.ARRAY_CHILDREN ||
+            slot.shapeFlag === ShapeFlags.STATEFUL_COMPONENT
+        )
+
+      slot.forEach((slot) => {
+        if (Array.isArray(slot.children) && slot.children.length !== 0) {
+          renderSlots.push(...(slot.children as VNode[]))
+          return
+        }
+        renderSlots.push(slot)
+      })
+      return renderSlots
+    })
+
     const renderResult = computed(() => {
-      if (!slots.default) return ''
-      if (!slots.default()[0]) return ''
-      const slot = (slots.default()[0].children ?? slots.default()) as VNode[]
-      if (currentStepIndex.value >= slot.length) return ''
+      if (calculateSlots.value.length === 0) return ''
+      if (currentStepIndex.value >= calculateSlots.value.length) return ''
 
       return (
         <div class="mt-step" onClick={handleClick}>
           <MtStepOverlay />
-          {slot[currentStepIndex.value]}
+          {calculateSlots.value[currentStepIndex.value]}
         </div>
       )
     })
