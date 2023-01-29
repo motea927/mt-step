@@ -15,6 +15,7 @@ export default defineConfig({
       include: ['src/**.ts', 'src/**.tsx', 'src/**.vue', 'src/**.js'],
       insertTypesEntry: true,
       copyDtsFiles: false,
+      tsConfigFilePath: './tsconfig.app.json',
     }),
   ],
   resolve: {
