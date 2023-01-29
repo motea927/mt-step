@@ -70,6 +70,7 @@ jobs:
         node: [18]
 
     timeout-minutes: 20
+    environment: release
 
     steps:
       - uses: actions/checkout@v3
