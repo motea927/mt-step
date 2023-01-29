@@ -6,7 +6,6 @@ on:
     branches:
       - master
   pull_request:
-    types: [opened, synchronize, reopened, closed]
     paths-ignore:
       - 'docs/**'
     branches:
@@ -57,7 +56,7 @@ jobs:
 
   build-release:
     if: |
-      github.event.pull_request.merged == true &&
+      github.event_name == 'push' &&
       !contains(github.event.head_commit.message, 'chore') &&
       !contains(github.event.head_commit.message, 'docs')
     needs:
