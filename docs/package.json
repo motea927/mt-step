@@ -1,0 +1,16 @@
+{
+  "name": "docus-starter",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview"
+  },
+  "devDependencies": {
+    "@nuxt-themes/docus": "^1.6.0",
+    "mt-step": "0.0.7",
+    "nuxt": "^3.1.0"
+  }
+}

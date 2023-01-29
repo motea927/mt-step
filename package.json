@@ -1,7 +1,17 @@
 {
-  "name": "mt-template-vue-lib",
-  "version": "0.0.0",
-  "private": true,
+  "name": "mt-step",
+  "description": "A lightweight, highly customizable's Vue component to help user step by step focus on the page.",
+  "version": "0.0.7",
+  "private": false,
+  "author": {
+    "name": "motea927",
+    "email": "motea927@yahoo.com.tw"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/motea927/mt-step"
+  },
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
@@ -17,14 +27,16 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/my-lib.umd.cjs",
-  "module": "./dist/my-lib.js",
+  "main": "./dist/mt-step.umd.cjs",
+  "module": "./dist/mt-step.js",
   "exports": {
     ".": {
-      "import": "./dist/my-lib.js",
-      "require": "./dist/my-lib.umd.cjs"
-    }
+      "import": "./dist/mt-step.js",
+      "require": "./dist/mt-step.umd.cjs"
+    },
+    "./css": "./dist/mt-step.css"
   },
+  "types": "./dist/main.d.ts",
   "dependencies": {
     "vue": "^3.2.45"
   },
@@ -46,10 +58,12 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
     "sass": "^1.57.1",
+    "semantic-release": "^20.1.0",
     "start-server-and-test": "^1.15.2",
     "typescript": "~4.7.4",
     "vite": "^4.0.0",
-    "vitest": "^0.25.6",
+    "vite-plugin-dts": "^1.7.1",
+    "vitest": "0.28.3",
     "vue-tsc": "^1.0.12"
   }
 }

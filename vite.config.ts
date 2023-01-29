@@ -4,10 +4,20 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
+import dts from 'vite-plugin-dts'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), vueJsx()],
+  plugins: [
+    vue(),
+    vueJsx(),
+    dts({
+      include: ['src/**.ts', 'src/**.tsx', 'src/**.vue', 'src/**.js'],
+      insertTypesEntry: true,
+      copyDtsFiles: false,
+      tsConfigFilePath: './tsconfig.app.json',
+    }),
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -17,9 +27,9 @@ export default defineConfig({
     lib: {
       // Could also be a dictionary or array of multiple entry points
       entry: resolve(__dirname, 'src/main.ts'),
-      name: 'MyLib',
+      name: 'MtStep',
       // the proper extensions will be added
-      fileName: 'my-lib',
+      fileName: 'mt-step',
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
@@ -31,6 +41,7 @@ export default defineConfig({
         globals: {
           vue: 'Vue',
         },
+        assetFileNames: 'mt-step.[ext]',
       },
     },
   },

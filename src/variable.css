@@ -1,0 +1,6 @@
+.mt-step {
+  --z-index-mt-step: 890;
+  --z-index-overlay: 900;
+  --z-index-highlight: 910;
+  --z-index-hint: 920;
+}

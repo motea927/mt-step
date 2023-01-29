@@ -1,4 +1,6 @@
-import App from './App.vue'
+import MtStep from '@/MtStep'
+import MtStepItem from '@/MtStepItem.vue'
+import './variable.css'
 
 const isDev = import.meta.env.MODE === 'development'
 if (isDev) {
@@ -8,4 +10,4 @@ if (isDev) {
   createApp(PlayGroundApp).mount('#app')
 }
 
-export { App }
+export { MtStep, MtStepItem }
