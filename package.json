@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/motea927/mt-step"
+    "url": "git+https://github.com/motea927/mt-step.git"
   },
   "scripts": {
     "dev": "vite",
