@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
-import MtStep from '../MtStep'
+import MtStep from '@/components/MtStep'
 
 const slots = {
   default: ['<div id="one">One</div>', '<div id="two">Two</div>'],

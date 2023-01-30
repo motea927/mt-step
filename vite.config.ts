@@ -12,7 +12,7 @@ export default defineConfig({
     vue(),
     vueJsx(),
     dts({
-      include: ['src/**.ts', 'src/**.tsx', 'src/**.vue', 'src/**.js'],
+      include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.vue', 'src/**/*.js'],
       insertTypesEntry: true,
       copyDtsFiles: false,
       tsConfigFilePath: './tsconfig.app.json',
@@ -22,6 +22,9 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
+  },
+  optimizeDeps: {
+    exclude: ['vue-demi'],
   },
   build: {
     cssTarget: 'chrome61',

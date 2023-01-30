@@ -9,7 +9,10 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev": "vite",
+    "dev:lib": "yarn switch:3 && yarn type-check && yarn build-only --watch",
+    "dev:3": "cd ./playground/vue3 && yarn && yarn dev",
+    "dev:2": "cd ./playground/vue2 && yarn && yarn serve",
+    "switch:3": "vue-demi-switch 3",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "test:unit": "vitest --environment jsdom --root src/",
@@ -34,7 +37,17 @@
   },
   "types": "./dist/main.d.ts",
   "dependencies": {
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vue-demi": "^0.13.11"
+  },
+  "peerDependencies": {
+    "@vue/composition-api": "^1.0.0-rc.1",
+    "vue": "^2.0.0 || >=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",

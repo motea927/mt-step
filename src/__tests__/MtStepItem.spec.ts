@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import MtStepItem from '../MtStepItem.vue'
+import MtStepItem from '@/components/MtStepItem'
 
 const props = {
   stepItem: [

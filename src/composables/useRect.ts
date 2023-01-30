@@ -1,4 +1,4 @@
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue-demi'
 
 export const useRect = (selector: string) => {
   const element = ref<HTMLElement | null>(null)
