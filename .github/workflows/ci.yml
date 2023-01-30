@@ -36,7 +36,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: dist
-          key: ${{ matrix.os }}-node-v${{ matrix.node }}-${{ github.sha }}
+          key: ${{ github.sha }}
 
   test:
     runs-on: ${{ matrix.os }}
@@ -89,7 +89,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: dist
-          key: ${{ matrix.os }}-node-v${{ matrix.node }}-${{ github.sha }}
+          key: ${{ github.sha }}
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
