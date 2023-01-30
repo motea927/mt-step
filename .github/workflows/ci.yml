@@ -90,8 +90,6 @@ jobs:
         with:
           path: dist
           key: ${{ github.sha }}
-      - name: Build
-        run: yarn build
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
