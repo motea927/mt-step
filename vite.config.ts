@@ -24,6 +24,7 @@ export default defineConfig({
     },
   },
   build: {
+    cssTarget: 'chrome61',
     lib: {
       // Could also be a dictionary or array of multiple entry points
       entry: resolve(__dirname, 'src/main.ts'),
