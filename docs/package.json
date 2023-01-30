@@ -11,6 +11,7 @@
   "devDependencies": {
     "@nuxt-themes/docus": "^1.6.0",
     "mt-step": "0.0.7",
-    "nuxt": "^3.1.0"
+    "nuxt": "^3.1.0",
+    "sass": "^1.57.1"
   }
 }
