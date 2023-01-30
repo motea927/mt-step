@@ -32,6 +32,11 @@ jobs:
         run: yarn
       - name: Build
         run: yarn build
+      - name: Cache dist
+        uses: actions/cache@v3
+        with:
+          path: dist
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-${{ github.sha }}
 
   test:
     runs-on: ${{ matrix.os }}
@@ -80,6 +85,11 @@ jobs:
           cache: 'yarn'
       - name: Install dependencies
         run: yarn
+      - name: Restore dist cache
+        uses: actions/cache@v3
+        with:
+          path: dist
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-${{ github.sha }}
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
