@@ -4,6 +4,7 @@ import {
   ref,
   onMounted,
   onBeforeUnmount,
+  h,
 } from 'vue-demi'
 import type { PropType } from 'vue-demi'
 import { useRect } from '@/composables/useRect'
@@ -57,9 +58,11 @@ const MtStepItemHighlight = defineComponent({
       element.value.style.zIndex = originalZIndex.value
     })
 
-    return () => (
-      <div class="mt-step-item-highlight" style={positionStyle.value}></div>
-    )
+    return () =>
+      h('div', {
+        class: 'mt-step-item-highlight',
+        style: positionStyle.value,
+      })
   },
 })
 

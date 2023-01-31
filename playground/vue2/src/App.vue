@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <MtStep>
+    123
+    <MtStepItem :stepItem="[]" />
+    <button @click="show = true">show</button>
+    <MtStep v-if="show">
       <MtStepItem />
     </MtStep>
   </div>
@@ -11,6 +14,9 @@ import { MtStep, MtStepItem } from '../../../dist/mt-step'
 
 export default {
   name: 'App',
+  data() {
+    return { show: false }
+  },
   components: {
     MtStep,
     MtStepItem,

@@ -1,4 +1,4 @@
-import { defineComponent, computed } from 'vue-demi'
+import { defineComponent, computed, h } from 'vue-demi'
 import { useRect } from '@/composables/useRect'
 import type { PropType } from 'vue-demi'
 
@@ -43,17 +43,18 @@ const MtStepItemHighlight = defineComponent({
       return styleMap[position]
     })
 
-    return () => (
-      <div
-        class={[
-          'mt-step-item-hint',
-          `mt-step-item-hint--${props.hint?.position ?? 'top'}`,
-        ]}
-        style={positionStyle.value}
-      >
-        {props.hint.text}
-      </div>
-    )
+    return () =>
+      h(
+        'div',
+        {
+          class: [
+            'mt-step-item-hint',
+            `mt-step-item-hint--${props.hint?.position ?? 'top'}`,
+          ],
+          style: positionStyle.value,
+        },
+        props.hint.text
+      )
   },
 })
 

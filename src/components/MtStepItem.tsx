@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue-demi'
+import { defineComponent, h } from 'vue-demi'
 import type { PropType } from 'vue-demi'
 
 import MtStepItemHighlight from '@/components/MtStepItemHighlight'
@@ -20,30 +20,24 @@ const MtStepItem = defineComponent({
     },
   },
   setup(props) {
-    return () => (
-      <div class="mt-step-item">
-        {props.stepItem.map((stepItem, index) => {
-          return (
-            <MtStepItemHighlight
-              key={`${stepItem.selector}${index}`}
-              {...stepItem}
-            />
-          )
-        })}
-
-        {props.stepItem
+    return () =>
+      h('div', { class: 'mt-step-item' }, [
+        props.stepItem.map((stepItem, index) => {
+          return h(MtStepItemHighlight, null, {
+            key: `${stepItem.selector}${index}`,
+            ...stepItem,
+          })
+        }),
+        props.stepItem
           .filter((stepItem) => stepItem.hint)
           .map((stepItem, index) => {
-            return (
-              <MtStepItemHint
-                key={`${stepItem.selector}${index}`}
-                selector={stepItem.selector}
-                hint={stepItem.hint!}
-              />
-            )
-          })}
-      </div>
-    )
+            return h(MtStepItemHint, null, {
+              key: `${stepItem.selector}${index}`,
+              selector: stepItem.selector,
+              hint: stepItem.hint!,
+            })
+          }),
+      ])
   },
 })
 export default MtStepItem

@@ -4,7 +4,8 @@ import {
   ref,
   computed,
   nextTick,
-  install,
+  // install,
+  h,
 } from 'vue-demi'
 import type { PropType, VNode } from 'vue-demi'
 
@@ -13,7 +14,7 @@ import { ShapeFlags } from '../types'
 import MtStepOverlay from '@/components/MtStepOverlay'
 import './MtStep.scss'
 
-install()
+// install()
 
 const MtStep = defineComponent({
   props: {
@@ -27,12 +28,11 @@ const MtStep = defineComponent({
     },
   },
   emits: ['close', 'update:modelValue'],
-  setup(props, { emit }) {
-    const slots = useSlots()
-
+  setup(props, { emit, slots }) {
     const isClosed = () => {
       return currentStepIndex.value >= calculateSlots.value.length
     }
+    console.log(slots.default())
 
     const emitClose = () => {
       emit('close')
@@ -88,15 +88,13 @@ const MtStep = defineComponent({
       if (calculateSlots.value.length === 0) return ''
       if (currentStepIndex.value >= calculateSlots.value.length) return ''
 
-      return (
-        <div class="mt-step" onClick={handleClick}>
-          <MtStepOverlay />
-          {calculateSlots.value[currentStepIndex.value]}
-        </div>
-      )
+      return h('div', { class: 'mt-step', onClick: handleClick }, [
+        h(MtStepOverlay),
+        calculateSlots.value[currentStepIndex.value],
+      ])
     })
 
-    return () => renderResult.value
+    return () => h(renderResult.value)
   },
 })
 
