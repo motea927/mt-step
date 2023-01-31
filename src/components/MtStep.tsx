@@ -1,20 +1,10 @@
-import {
-  defineComponent,
-  useSlots,
-  ref,
-  computed,
-  nextTick,
-  // install,
-  h,
-} from 'vue-demi'
+import { defineComponent, ref, computed, nextTick, h } from 'vue-demi'
 import type { PropType, VNode } from 'vue-demi'
 
 import { ShapeFlags } from '../types'
 
 import MtStepOverlay from '@/components/MtStepOverlay'
 import './MtStep.scss'
-
-// install()
 
 const MtStep = defineComponent({
   props: {
@@ -32,7 +22,6 @@ const MtStep = defineComponent({
     const isClosed = () => {
       return currentStepIndex.value >= calculateSlots.value.length
     }
-    console.log(slots.default())
 
     const emitClose = () => {
       emit('close')
@@ -63,16 +52,18 @@ const MtStep = defineComponent({
     // when use v-for, flag is ARRAY_CHILDREN, slots will be children
     const calculateSlots = computed(() => {
       if (!slots.default) return []
-      if (!slots.default()[0]) return []
+      const defaultSlots = slots.default()
+      if (!defaultSlots[0]) return []
+
+      const isVue2 = !defaultSlots[0].shapeFlag
+      if (isVue2) return defaultSlots
 
       const renderSlots: VNode[] = []
-      const slot = slots
-        .default()
-        .filter(
-          (slot) =>
-            slot.shapeFlag === ShapeFlags.ARRAY_CHILDREN ||
-            slot.shapeFlag === ShapeFlags.STATEFUL_COMPONENT
-        )
+      const slot = defaultSlots.filter(
+        (slot) =>
+          slot.shapeFlag === ShapeFlags.ARRAY_CHILDREN ||
+          slot.shapeFlag === ShapeFlags.STATEFUL_COMPONENT
+      )
 
       slot.forEach((slot) => {
         if (Array.isArray(slot.children) && slot.children.length !== 0) {
@@ -94,7 +85,7 @@ const MtStep = defineComponent({
       ])
     })
 
-    return () => h(renderResult.value)
+    return () => renderResult.value
   },
 })
 

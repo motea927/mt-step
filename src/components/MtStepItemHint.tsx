@@ -4,7 +4,7 @@ import type { PropType } from 'vue-demi'
 
 import './MtStepItemHint.scss'
 
-const MtStepItemHighlight = defineComponent({
+const MtStepItemHint = defineComponent({
   props: {
     selector: { type: String as PropType<string>, required: true },
     hint: {
@@ -49,7 +49,7 @@ const MtStepItemHighlight = defineComponent({
         {
           class: [
             'mt-step-item-hint',
-            `mt-step-item-hint--${props.hint?.position ?? 'top'}`,
+            `mt-step-item-hint--${props.hint.position ?? 'top'}`,
           ],
           style: positionStyle.value,
         },
@@ -58,4 +58,4 @@ const MtStepItemHighlight = defineComponent({
   },
 })
 
-export default MtStepItemHighlight
+export default MtStepItemHint

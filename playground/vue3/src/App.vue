@@ -11,6 +11,9 @@
             selector: `#position-card-${i - 1}`,
             hint: { text: `This is ${i}` },
           },
+          {
+            selector: `#position-card-${i}`,
+          },
         ]"
       />
     </MtStep>

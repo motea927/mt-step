@@ -1,23 +1,38 @@
 <template>
   <div id="app">
-    123
-    <MtStepItem :stepItem="[]" />
-    <button @click="show = true">show</button>
-    <MtStep v-if="show">
-      <MtStepItem />
+    <Positions />
+    <button @click="showStep = true">show</button>
+    <MtStep v-if="showStep" @close="showStep = false">
+      <MtStepItem
+        v-for="i in 3"
+        :key="i"
+        :stepItem="[
+          {
+            selector: `#position-card-${i - 1}`,
+            hint: { text: `This is ${i}` },
+          },
+          {
+            selector: `#position-card-${i}`,
+          },
+        ]"
+      />
     </MtStep>
   </div>
 </template>
 
 <script>
+import Positions from './components/Positions.vue'
+
+import '../../../dist/mt-step.css'
 import { MtStep, MtStepItem } from '../../../dist/mt-step'
 
 export default {
   name: 'App',
   data() {
-    return { show: false }
+    return { showStep: false }
   },
   components: {
+    Positions,
     MtStep,
     MtStepItem,
   },
