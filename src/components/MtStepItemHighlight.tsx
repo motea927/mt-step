@@ -18,7 +18,6 @@ const MtStepItemHighlight = defineComponent({
     },
   },
   setup(props) {
-    console.log(`props highlight ${props.selector}`)
     const { element, rect } = useRect(props.selector)
 
     const positionStyle = computed(() => {

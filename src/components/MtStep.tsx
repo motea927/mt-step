@@ -79,10 +79,17 @@ const MtStep = defineComponent({
       if (calculateSlots.value.length === 0) return ''
       if (currentStepIndex.value >= calculateSlots.value.length) return ''
 
-      return h('div', { class: 'mt-step', onClick: handleClick }, [
-        h(MtStepOverlay),
-        calculateSlots.value[currentStepIndex.value],
-      ])
+      return h(
+        'div',
+        {
+          class: 'mt-step',
+          onClick: handleClick,
+          on: {
+            click: handleClick,
+          },
+        },
+        [h(MtStepOverlay), calculateSlots.value[currentStepIndex.value]]
+      )
     })
 
     return () => renderResult.value

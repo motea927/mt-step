@@ -14,10 +14,9 @@
     "dev:3": "cd ./playground/vue3 && yarn && yarn dev",
     "switch:2": "vue-demi-switch 2 vue2",
     "switch:3": "vue-demi-switch 3",
-    "build": "run-p type-check build-only",
+    "build": "yarn switch:3 && run-p type-check build-only",
     "preview": "vite preview",
     "test:unit": "vitest --environment jsdom --root src/",
-    "test:unit:2": "yarn switch:2 && yarn test:unit",
     "test:unit:3": "yarn switch:3 && yarn test:unit",
     "test:e2e": "start-server-and-test preview :4173 'cypress run --e2e'",
     "test:e2e:dev": "start-server-and-test 'vite dev --port 4173' :4173 'cypress open --e2e'",
@@ -41,8 +40,8 @@
   "types": "./dist/main.d.ts",
   "dependencies": {
     "vue": "^3.2.45",
-    "vue2": "npm:vue@2",
-    "vue-demi": "^0.13.11"
+    "vue-demi": "^0.13.11",
+    "vue2": "npm:vue@2"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",
