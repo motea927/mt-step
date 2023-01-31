@@ -1,0 +1,7 @@
+// Vitest Snapshot v1
+
+exports[`MtStepOverlay.vue > Renders correctly 1`] = `
+<div
+  class="mt-step-overlay"
+/>
+`;
