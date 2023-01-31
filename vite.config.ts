@@ -12,7 +12,7 @@ export default defineConfig({
     vue(),
     vueJsx(),
     dts({
-      include: ['src/**.ts', 'src/**.tsx', 'src/**.vue', 'src/**.js'],
+      include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.vue', 'src/**/*.js'],
       insertTypesEntry: true,
       copyDtsFiles: false,
       tsConfigFilePath: './tsconfig.app.json',
@@ -22,6 +22,9 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
+  },
+  optimizeDeps: {
+    exclude: ['vue-demi'],
   },
   build: {
     cssTarget: 'chrome61',
@@ -35,12 +38,13 @@ export default defineConfig({
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
-      external: ['vue'],
+      external: ['vue', 'vue-demi'],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
           vue: 'Vue',
+          'vue-demi': 'VueDemi',
         },
         assetFileNames: 'mt-step.[ext]',
       },

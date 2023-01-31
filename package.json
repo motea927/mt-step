@@ -9,10 +9,15 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev": "vite",
-    "build": "run-p type-check build-only",
+    "dev:lib": "yarn switch:3 && yarn type-check && yarn build-only --watch",
+    "dev:2": "cd ./playground/vue2 && yarn && yarn serve",
+    "dev:3": "cd ./playground/vue3 && yarn && yarn dev",
+    "switch:2": "vue-demi-switch 2 vue2",
+    "switch:3": "vue-demi-switch 3",
+    "build": "yarn switch:3 && run-p type-check build-only",
     "preview": "vite preview",
     "test:unit": "vitest --environment jsdom --root src/",
+    "test:unit:3": "yarn switch:3 && yarn test:unit",
     "test:e2e": "start-server-and-test preview :4173 'cypress run --e2e'",
     "test:e2e:dev": "start-server-and-test 'vite dev --port 4173' :4173 'cypress open --e2e'",
     "build-only": "vite build",
@@ -34,7 +39,18 @@
   },
   "types": "./dist/main.d.ts",
   "dependencies": {
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vue-demi": "^0.13.11",
+    "vue2": "npm:vue@2"
+  },
+  "peerDependencies": {
+    "@vue/composition-api": "^1.0.0-rc.1",
+    "vue": "^2.0.0 || >=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
@@ -42,6 +58,7 @@
     "@types/node": "^18.11.12",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
+    "@vue/composition-api": "^1.7.1",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^11.0.0",
     "@vue/test-utils": "^2.2.6",
