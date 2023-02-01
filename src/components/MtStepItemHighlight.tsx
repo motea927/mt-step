@@ -39,6 +39,9 @@ const MtStepItemHighlight = defineComponent({
       if (!element.value) return
 
       const { position, zIndex } = window.getComputedStyle(element.value)
+      console.log(element.value)
+      console.log(position)
+
       const newZIndex = window
         .getComputedStyle(document.querySelector('.mt-step') as Element)
         .getPropertyValue('--z-index-highlight')
@@ -46,7 +49,7 @@ const MtStepItemHighlight = defineComponent({
       originalPosition.value = position
       originalZIndex.value = zIndex
 
-      if (originalPosition.value === 'static') {
+      if (!originalPosition.value || originalPosition.value === 'static') {
         element.value.style.position = 'relative'
       }
       element.value.style.zIndex = newZIndex

@@ -7,7 +7,7 @@ const slots = {
   default: ['<div id="one">One</div>', '<div id="two">Two</div>'],
 }
 
-describe('MtStep.vue', () => {
+describe('MtStep', () => {
   it('Should include overlay', () => {
     const wrapper = mount(MtStep, { slots })
     const overlayElement = wrapper.find('.mt-step-overlay')

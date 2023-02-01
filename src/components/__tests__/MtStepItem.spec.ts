@@ -10,7 +10,7 @@ const props = {
   ],
 }
 
-describe('MtStepItem.vue', () => {
+describe('MtStepItem', () => {
   it('Should render highlight component', () => {
     const wrapper = mount(MtStepItem, {
       props,
