@@ -1,12 +1,15 @@
 .mt-step-item-hint {
   position: absolute;
-  background-color: #fff;
-  padding: 8px;
-  border-radius: 4px;
   z-index: var(--z-index-hint);
-  color: #666;
 
-  &::after {
+  &--default {
+    background-color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    color: #666;
+  }
+
+  &--default::after {
     content: '';
     position: absolute;
     border: 5px solid #fff;

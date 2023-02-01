@@ -19,7 +19,7 @@ const MtStepItem = defineComponent({
       required: true,
     },
   },
-  setup(props) {
+  setup(props, { slots }) {
     return () =>
       h(
         'div',
@@ -36,17 +36,33 @@ const MtStepItem = defineComponent({
             })
           }),
           ...props.stepItem
-            .filter((stepItem) => stepItem.hint)
+            // .filter((stepItem) => stepItem.hint)
             .map((stepItem, index) => {
               const props = {
-                selector: stepItem.selector,
-                hint: stepItem.hint!,
+                ...stepItem,
               }
-              return h(MtStepItemHint, {
-                key: `hint-${stepItem.selector}${index}`,
-                ...props,
-                props,
-              })
+
+              if (slots[`hint-${index}`]) {
+                return h(
+                  MtStepItemHint,
+                  {
+                    key: `hint-${stepItem.selector}${index}`,
+                    ...props,
+                    props,
+                  },
+                  slots[`hint-${index}`]
+                )
+              }
+
+              if (stepItem.hint) {
+                return h(MtStepItemHint, {
+                  key: `hint-${stepItem.selector}${index}`,
+                  ...props,
+                  props,
+                })
+              }
+
+              return ''
             }),
         ]
       )

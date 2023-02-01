@@ -15,7 +15,11 @@
             selector: `#position-card-${i}`,
           },
         ]"
-      />
+      >
+        <template v-if="i - 1 === 0" v-slot:hint-0>
+          <div id="test" style="background: yellow">test slot</div>
+        </template>
+      </MtStepItem>
     </MtStep>
   </main>
 </template>

@@ -12,11 +12,11 @@ const MtStepItemHint = defineComponent({
         text: string
         position?: 'top' | 'right' | 'bottom' | 'left'
       }>,
-      required: true,
+      required: false,
     },
   },
 
-  setup(props) {
+  setup(props, { slots }) {
     const { rect } = useRect(props.selector)
     const positionStyle = computed(() => {
       const { top, left, width, height } = rect.value
@@ -49,11 +49,12 @@ const MtStepItemHint = defineComponent({
         {
           class: [
             'mt-step-item-hint',
-            `mt-step-item-hint--${props.hint.position ?? 'top'}`,
+            { 'mt-step-item-hint--default': !slots.default },
+            `mt-step-item-hint--${props.hint?.position ?? 'top'}`,
           ],
           style: positionStyle.value,
         },
-        props.hint.text
+        slots.default ? slots.default() : props.hint?.text
       )
   },
 })

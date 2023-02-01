@@ -1,69 +1,8 @@
 // Vitest Snapshot v1
 
-exports[`MtStepItemHint > Default position is top 1`] = `
-<div
-  class="mt-step-item-hint mt-step-item-hint--top"
-  style="top: 0px; left: 0px;"
->
-  something
-</div>
-`;
-
-exports[`MtStepItemHint > Renders correctly 1`] = `
-<div
-  class="mt-step-item-hint mt-step-item-hint--top"
-  style="top: 0px; left: 0px;"
-/>
-`;
-
-exports[`MtStepItemHint > position props is optional, default is top 1`] = `
-<div
-  class="mt-step-item-hint mt-step-item-hint--top"
-  style="top: 0px; left: 0px;"
->
-  something
-</div>
-`;
-
 exports[`MtStepItemHint > props.hint.position is optional, default is top 1`] = `
 <div
-  class="mt-step-item-hint mt-step-item-hint--top"
-  style="top: 0px; left: 0px;"
->
-  something
-</div>
-`;
-
-exports[`MtStepItemHint > render correct className with props.hint.position 1`] = `
-<div
-  class="mt-step-item-hint mt-step-item-hint--top"
-  style="top: 0px; left: 0px;"
->
-  something
-</div>
-`;
-
-exports[`MtStepItemHint > render correct className with props.hint.position 2`] = `
-<div
-  class="mt-step-item-hint mt-step-item-hint--right"
-  style="top: 0px; left: 0px;"
->
-  something
-</div>
-`;
-
-exports[`MtStepItemHint > render correct className with props.hint.position 3`] = `
-<div
-  class="mt-step-item-hint mt-step-item-hint--bottom"
-  style="top: 0px; left: 0px;"
->
-  something
-</div>
-`;
-
-exports[`MtStepItemHint > render correct className with props.hint.position 4`] = `
-<div
-  class="mt-step-item-hint mt-step-item-hint--left"
+  class="mt-step-item-hint mt-step-item-hint--default mt-step-item-hint--top"
   style="top: 0px; left: 0px;"
 >
   something
@@ -72,7 +11,7 @@ exports[`MtStepItemHint > render correct className with props.hint.position 4`] 
 
 exports[`MtStepItemHint > render correct className with props.hint.position bottom 1`] = `
 <div
-  class="mt-step-item-hint mt-step-item-hint--bottom"
+  class="mt-step-item-hint mt-step-item-hint--default mt-step-item-hint--bottom"
   style="top: 0px; left: 0px;"
 >
   something
@@ -81,7 +20,7 @@ exports[`MtStepItemHint > render correct className with props.hint.position bott
 
 exports[`MtStepItemHint > render correct className with props.hint.position left 1`] = `
 <div
-  class="mt-step-item-hint mt-step-item-hint--left"
+  class="mt-step-item-hint mt-step-item-hint--default mt-step-item-hint--left"
   style="top: 0px; left: 0px;"
 >
   something
@@ -90,7 +29,7 @@ exports[`MtStepItemHint > render correct className with props.hint.position left
 
 exports[`MtStepItemHint > render correct className with props.hint.position right 1`] = `
 <div
-  class="mt-step-item-hint mt-step-item-hint--right"
+  class="mt-step-item-hint mt-step-item-hint--default mt-step-item-hint--right"
   style="top: 0px; left: 0px;"
 >
   something
@@ -99,7 +38,7 @@ exports[`MtStepItemHint > render correct className with props.hint.position righ
 
 exports[`MtStepItemHint > render correct className with props.hint.position top 1`] = `
 <div
-  class="mt-step-item-hint mt-step-item-hint--top"
+  class="mt-step-item-hint mt-step-item-hint--default mt-step-item-hint--top"
   style="top: 0px; left: 0px;"
 >
   something
