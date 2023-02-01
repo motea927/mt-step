@@ -3,6 +3,10 @@ import { mount } from '@vue/test-utils'
 import MtStepItemHighlight from '@/components/MtStepItemHighlight'
 
 const mockZIndex = '799'
+const mountElement = () =>
+  mount(MtStepItemHighlight, {
+    propsData: { selector: '#test' },
+  })
 describe('MtStepItemHighlight', () => {
   beforeEach(() => {
     // Create a target element for testing
@@ -27,16 +31,12 @@ describe('MtStepItemHighlight', () => {
   })
 
   it('renders correctly with rect data', () => {
-    const wrapper = mount(MtStepItemHighlight, {
-      propsData: { selector: '#test' },
-    })
+    const wrapper = mountElement()
     expect(wrapper.element).toMatchSnapshot()
   })
 
   it('updates position and z-index of target element', async () => {
-    const wrapper = mount(MtStepItemHighlight, {
-      propsData: { selector: '#test' },
-    })
+    const wrapper = mountElement()
 
     const targetElement = document.querySelector('#test') as HTMLElement
     expect(targetElement.style.position).toBe('relative')

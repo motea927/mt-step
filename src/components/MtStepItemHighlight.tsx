@@ -39,8 +39,6 @@ const MtStepItemHighlight = defineComponent({
       if (!element.value) return
 
       const { position, zIndex } = window.getComputedStyle(element.value)
-      console.log(element.value)
-      console.log(position)
 
       const newZIndex = window
         .getComputedStyle(document.querySelector('.mt-step') as Element)
