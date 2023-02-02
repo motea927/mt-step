@@ -10,13 +10,47 @@ const props = {
   ],
 }
 
-describe('MtStepItem.vue', () => {
+describe('MtStepItem', () => {
   it('Should render highlight component', () => {
     const wrapper = mount(MtStepItem, {
       props,
     })
 
     expect(wrapper.find('.mt-step-item-highlight').exists()).toEqual(true)
+  })
+
+  it('Highest priority to render main hint slot', () => {
+    const wrapper = mount(MtStepItem, {
+      props: {
+        stepItem: [
+          {
+            selector: '.mt-step-item',
+          },
+        ],
+      },
+      slots: {
+        'hint-0': '<div id="custom-hint"></div>',
+        'main-hint': '<div id="main-hint"></div>',
+      },
+    })
+
+    expect(wrapper.find('#custom-hint').exists()).toEqual(false)
+    expect(wrapper.find('#main-hint').exists()).toEqual(true)
+  })
+
+  it('Render correct hint slot ith item index', () => {
+    const wrapper = mount(MtStepItem, {
+      props: {
+        stepItem: [
+          {
+            selector: '.mt-step-item',
+          },
+        ],
+      },
+      slots: { 'hint-0': '<div id="custom-hint"></div>' },
+    })
+
+    expect(wrapper.find('#custom-hint').exists()).toEqual(true)
   })
 
   it('Should not render hint when props hint is undefined', () => {

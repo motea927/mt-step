@@ -1,0 +1,8 @@
+// Vitest Snapshot v1
+
+exports[`MtStepItemHighlight > renders correctly with rect data 1`] = `
+<div
+  class="mt-step-item-highlight"
+  style="top: 0px; right: 0px; bottom: 0px; left: 0px; width: 0px; height: 0px;"
+/>
+`;

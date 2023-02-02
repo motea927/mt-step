@@ -1,0 +1,46 @@
+// Vitest Snapshot v1
+
+exports[`MtStepItemHint > props.hint.position is optional, default is top 1`] = `
+<div
+  class="mt-step-item-hint mt-step-item-hint--default mt-step-item-hint--top"
+  style="top: 0px; left: 0px;"
+>
+  something
+</div>
+`;
+
+exports[`MtStepItemHint > render correct className with props.hint.position bottom 1`] = `
+<div
+  class="mt-step-item-hint mt-step-item-hint--default mt-step-item-hint--bottom"
+  style="top: 0px; left: 0px;"
+>
+  something
+</div>
+`;
+
+exports[`MtStepItemHint > render correct className with props.hint.position left 1`] = `
+<div
+  class="mt-step-item-hint mt-step-item-hint--default mt-step-item-hint--left"
+  style="top: 0px; left: 0px;"
+>
+  something
+</div>
+`;
+
+exports[`MtStepItemHint > render correct className with props.hint.position right 1`] = `
+<div
+  class="mt-step-item-hint mt-step-item-hint--default mt-step-item-hint--right"
+  style="top: 0px; left: 0px;"
+>
+  something
+</div>
+`;
+
+exports[`MtStepItemHint > render correct className with props.hint.position top 1`] = `
+<div
+  class="mt-step-item-hint mt-step-item-hint--default mt-step-item-hint--top"
+  style="top: 0px; left: 0px;"
+>
+  something
+</div>
+`;
