@@ -19,6 +19,19 @@
         <template v-if="i - 1 === 0" v-slot:hint-0>
           <div id="test" style="background: yellow">test slot</div>
         </template>
+
+        <template v-if="i - 1 === 0" v-slot:main-hint>
+          <div
+            id="test"
+            style="
+              position: absolute;
+              background: red;
+              z-index: var(--z-index-hint);
+            "
+          >
+            main-hint
+          </div>
+        </template>
       </MtStepItem>
     </MtStep>
   </main>

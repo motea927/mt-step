@@ -1,4 +1,4 @@
-import { defineComponent, ref, computed, nextTick, h } from 'vue-demi'
+import { defineComponent, ref, computed, nextTick, h, version } from 'vue-demi'
 import type { PropType, VNode } from 'vue-demi'
 
 import { ShapeFlags } from '../types'
@@ -75,6 +75,7 @@ const MtStep = defineComponent({
       return renderSlots
     })
 
+    const isVue2 = version[0] === '2'
     const renderResult = computed(() => {
       if (calculateSlots.value.length === 0) return ''
       if (currentStepIndex.value >= calculateSlots.value.length) return ''
@@ -84,9 +85,11 @@ const MtStep = defineComponent({
         {
           class: 'mt-step',
           onClick: handleClick,
-          on: {
-            click: handleClick,
-          },
+          ...(isVue2 && {
+            on: {
+              click: handleClick,
+            },
+          }),
         },
         [h(MtStepOverlay), calculateSlots.value[currentStepIndex.value]]
       )
