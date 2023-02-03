@@ -14,6 +14,7 @@ const MtStepItem = defineComponent({
             text: string
             position?: 'top' | 'right' | 'bottom' | 'left'
           }
+          isPointerEventsDisabled?: boolean
         }[]
       >,
       required: true,
@@ -24,7 +25,12 @@ const MtStepItem = defineComponent({
 
     const renderHighlight = computed(() => {
       return props.stepItem.map((stepItem, index) => {
-        const props = { selector: stepItem.selector }
+        const props = {
+          selector: stepItem.selector,
+          ...(stepItem.isPointerEventsDisabled && {
+            isPointerEventsDisabled: stepItem.isPointerEventsDisabled,
+          }),
+        }
 
         return h(MtStepItemHighlight, {
           key: `highlight-${stepItem.selector}${index}`,

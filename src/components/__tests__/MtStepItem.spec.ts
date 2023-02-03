@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import MtStepItem from '@/components/MtStepItem'
+import type MtStepItemHighlight from '@/components/MtStepItemHighlight'
 
 const props = {
   stepItem: [
@@ -11,12 +12,15 @@ const props = {
 }
 
 describe('MtStepItem', () => {
-  it('Should render highlight component', () => {
+  it('Should render MtStepItemHighlight component', () => {
     const wrapper = mount(MtStepItem, {
       props,
     })
+    const mtStepItemHighlight = wrapper.findComponent<
+      typeof MtStepItemHighlight
+    >('.mt-step-item-highlight')
 
-    expect(wrapper.find('.mt-step-item-highlight').exists()).toEqual(true)
+    expect(mtStepItemHighlight.exists()).toBe(true)
   })
 
   it('Highest priority to render main hint slot', () => {
@@ -86,5 +90,25 @@ describe('MtStepItem', () => {
     })
 
     expect(wrapper.findAll('.mt-step-item-highlight')).toHaveLength(2)
+  })
+
+  it('props.stepItem[i].isDisabledSelectorPointEvent should passed to highlight component', () => {
+    const wrapper = mount(MtStepItem, {
+      props: {
+        stepItem: [
+          {
+            selector: '.mt-step-item',
+            isPointerEventsDisabled: true,
+          },
+        ],
+      },
+    })
+
+    const mtStepItemHighlight = wrapper.findComponent<
+      typeof MtStepItemHighlight
+    >('.mt-step-item-highlight')
+
+    expect(mtStepItemHighlight.exists()).toBe(true)
+    expect(mtStepItemHighlight.props('isPointerEventsDisabled')).toBe(true)
   })
 })
