@@ -10,6 +10,7 @@
           {
             selector: `#position-card-${i - 1}`,
             hint: { text: `This is ${i}` },
+            isPointerEventsDisabled: true,
           },
           {
             selector: `#position-card-${i}`,

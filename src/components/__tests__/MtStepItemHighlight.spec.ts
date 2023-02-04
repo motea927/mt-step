@@ -3,9 +3,12 @@ import { mount } from '@vue/test-utils'
 import MtStepItemHighlight from '@/components/MtStepItemHighlight'
 
 const mockZIndex = '799'
-const mountElement = () =>
+const mountElement = (isPointerEventsDisabled?: boolean) =>
   mount(MtStepItemHighlight, {
-    propsData: { selector: '#test' },
+    propsData: {
+      selector: '#test',
+      ...(isPointerEventsDisabled && { isPointerEventsDisabled }),
+    },
   })
 describe('MtStepItemHighlight', () => {
   beforeEach(() => {
@@ -15,6 +18,7 @@ describe('MtStepItemHighlight', () => {
     targetElement.id = 'test'
     document.body.appendChild(targetElement)
     targetElement.style.position = ''
+    targetElement.style.pointerEvents = ''
 
     const mtStepELement = document.createElement('div')
     mtStepELement.className = 'mt-step'
@@ -45,5 +49,20 @@ describe('MtStepItemHighlight', () => {
 
     expect(targetElement.style.position).toBe('')
     expect(targetElement.style.zIndex).toBe('')
+  })
+
+  it("updates target element's pointer-event when isPointerEventsDisabled", async () => {
+    const wrapper = mountElement(true)
+
+    const targetElement = document.querySelector('#test') as HTMLElement
+    expect(targetElement.style.pointerEvents).toBe('none')
+    wrapper.unmount()
+    expect(targetElement.style.pointerEvents).toBe('')
+  })
+
+  it('default isPointerEventsDisabled is false', async () => {
+    mountElement()
+    const targetElement = document.querySelector('#test') as HTMLElement
+    expect(targetElement.style.pointerEvents).toBe('')
   })
 })
